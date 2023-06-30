@@ -20,7 +20,6 @@ import axios from 'axios'
 
 
 export const fetchDataFromapi = async (BASE_URL)=>{
-  
     const options = {
     method: 'GET',
     url: 'https://api.themoviedb.org/3/'+BASE_URL,
@@ -32,17 +31,15 @@ export const fetchDataFromapi = async (BASE_URL)=>{
 
     return new Promise((resolv, reject)=> {
         axios
-    .request(options)
-    .then(function (response) {
-        resolv(response.data);
-        return response.data
-
+        .request(options)
+        .then(function (response) {
+            resolv(response.data);
+            return response.data
+        })
+        .catch(function (error) {
+            console.error(error);
+            reject(error)
+            return error
+        });
     })
-    .catch(function (error) {
-        console.error(error);
-        reject(error)
-        return error
-    });
-})
-
 }
